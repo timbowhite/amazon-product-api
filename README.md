@@ -217,3 +217,58 @@ You can add any [available params](http://docs.aws.amazon.com/AWSECommerceServic
 [browseNodeId:](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/BrowseNodeLookup.html) A positive integer assigned by Amazon that uniquely identifies a product category.
 
 [responseGroup:](http://docs.aws.amazon.com/AWSECommerceService/latest/DG/CHAP_ResponseGroupsList.html) You can use multiple values by separating them with comma (e.g responseGroup: 'MostGifted,NewReleases,MostWishedFor,TopSellers'). Defaults to 'BrowseNodeInfo'  
+equest options:
+
+
+### Request options: 
+
+You can specify parameters for the underlying request module query calls. Pass an additional object as a parameter to any of the client query functions, with the "request" key set to your custom request parameters. For example:
+ 
+
+using promises:
+
+```javascript
+client.itemSearch({
+  director: 'Quentin Tarantino',
+  actor: 'Samuel L. Jackson',
+  searchIndex: 'DVD',
+  audienceRating: 'R',
+  responseGroup: 'ItemAttributes,Offers,Images'
+}, function(err, results) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(results);
+  }
+}, {
+  request: {
+    headers: {
+      'User-Agent': 'request'
+    }
+  }
+}); 
+```
+
+using a callback:
+
+```javascript
+client.itemSearch({
+  director: 'Quentin Tarantino',
+  actor: 'Samuel L. Jackson',
+  searchIndex: 'DVD',
+  audienceRating: 'R',
+  responseGroup: 'ItemAttributes,Offers,Images'
+}, function(err, results) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(results);
+  }
+}, {
+  request: {
+    headers: {
+      'User-Agent': 'request'
+    }
+  }
+});
+```
